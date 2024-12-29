@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sd-webui
+  namespace: stable-diffusion
+spec:
+  selector:
+    matchLabels:
+      name: sd-webui
+  template:
+    metadata:
+      labels:
+        name: sd-webui
+    spec:
+      containers:
+        - name: sd-webui
+          image: stable-diffusion-webui:v1.10.0
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 4
+              memory: 8Gi
+              nvidia.com/gpu: 1
+              nvidia.com/gpucores: 50
+          env:
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: "0"
+          ports:
+            - name: sd-webui
+              containerPort: 7860
+              protocol: TCP
+          volumeMounts:
+          - name: models
+            mountPath: /app/stable-diffusion-webui/models
+          - name: extensions
+            mountPath: /app/stable-diffusion-webui/extensions
+          - name: outputs
+            mountPath: /app/stable-diffusion-webui/outputs
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: models
+        - name: extensions
+          persistentVolumeClaim:
+            claimName: extensions
+        - name: outputs
+          persistentVolumeClaim:
+            claimName: outputs
+      securityContext: {}
+      nodeSelector:
+        gpu: "on"
