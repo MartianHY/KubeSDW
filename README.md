@@ -2,7 +2,7 @@
 
 Kubernetes Deployment Solution for Stable Diffusion Web UI
 
-这个项目是为了快速将 stable-diffusion-webui 项目 [https://github.com/AUTOMATIC1111/stable-diffusion-webui/master]() 部署到集群中，以方便使用虚拟GPU进行配额。
+这个项目是为了快速将 stable-diffusion-webui 项目 [https://github.com/AUTOMATIC1111/stable-diffusion-webui]() 部署到集群中，以方便使用虚拟GPU进行配额。
 
 ## 快速入门
 
