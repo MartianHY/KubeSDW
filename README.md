@@ -1,4 +1,4 @@
-# KubeSDW
+# stable-diffusion-webui-k8s
 
 Kubernetes Deployment Solution for Stable Diffusion Web UI
 
